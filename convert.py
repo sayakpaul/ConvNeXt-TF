@@ -90,7 +90,7 @@ def main(args):
     model_name = (
         f'{args["model_name"]}_1k'
         if args["dataset"] == "imagenet-1k"
-        else f'{get_model_config(args["model_name"])}_21k'
+        else f'{args["model_name"]}_21k'
     )
     convnext_model_tf = get_convnext_model(
         model_name=model_name,
