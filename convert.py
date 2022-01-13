@@ -80,7 +80,9 @@ def main(args):
 
     print("Instantiating PyTorch model and populating weights...")
     model_method = MODEL_TO_METHOD[args["model_name"]]
-    convnext_model_pt = model_method(args["checkpoint_path"])
+    convnext_model_pt = model_method(
+        args["checkpoint_path"], num_classes=DATASET_TO_CLASSES[args["dataset"]]
+    )
     convnext_model_pt.eval()
 
     print("Instantiating TensorFlow model...")
