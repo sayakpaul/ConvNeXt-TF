@@ -1,0 +1,6 @@
+.ipynb_checkpoints/
+.DS_Store
+.idea
+*.pb
+*.pyc
+saved_models/
