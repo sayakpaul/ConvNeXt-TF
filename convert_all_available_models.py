@@ -31,9 +31,9 @@ imagenet_21k_1k_224 = {
 }
 
 imagenet_21k_1k_384 = {
-    "convnext_base_21k_1k": "https://dl.fbaipublicfiles.com/convnext/convnext_base_22k_1k_384.pth",
-    "convnext_large_21k_1k": "https://dl.fbaipublicfiles.com/convnext/convnext_large_22k_1k_384.pth",
-    "convnext_xlarge_21k_1k": "https://dl.fbaipublicfiles.com/convnext/convnext_xlarge_22k_1k_384_ema.pth",
+    "convnext_base": "https://dl.fbaipublicfiles.com/convnext/convnext_base_22k_1k_384.pth",
+    "convnext_large": "https://dl.fbaipublicfiles.com/convnext/convnext_large_22k_1k_384.pth",
+    "convnext_xlarge": "https://dl.fbaipublicfiles.com/convnext/convnext_xlarge_22k_1k_384_ema.pth",
 }
 
 print("Converting 224x224 resolution ImageNet-1k models.")
@@ -67,7 +67,7 @@ for model in tqdm(imagenet_21k_1k_224):
 
 
 print(
-    "Converting 384x284 resolution ImageNet-21k trained ImageNet-1k fine-tuned models."
+    "Converting 384x384 resolution ImageNet-21k trained ImageNet-1k fine-tuned models."
 )
 for model in tqdm(imagenet_21k_1k_384):
     print(f"Converting {model}.")

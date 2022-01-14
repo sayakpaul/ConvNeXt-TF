@@ -11,7 +11,6 @@ import argparse
 
 torch.set_grad_enabled(False)
 
-
 DATASET_TO_CLASSES = {
     "imagenet-1k": 1000,
     "imagenet-21k": 21841,
@@ -27,7 +26,9 @@ TF_MODEL_ROOT = "saved_models"
 
 
 def parse_args():
-    parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser(
+        description="Conversion of the PyTorch pre-trained ConvNeXt weights to TensorFlow."
+    )
     parser.add_argument(
         "-d",
         "--dataset",
@@ -87,11 +88,16 @@ def main(args):
 
     print("Instantiating TensorFlow model...")
     model_config = get_model_config(args["model_name"])
-    model_name = (
-        f'{args["model_name"]}_1k'
-        if args["dataset"] == "imagenet-1k"
-        else f'{args["model_name"]}_21k'
-    )
+
+    if "22k_1k" not in args["checkpoint_path"]:
+        model_name = (
+            f'{args["model_name"]}_1k'
+            if args["dataset"] == "imagenet-1k"
+            else f'{args["model_name"]}_21k'
+        )
+    else:
+        model_name = f'{args["model_name"]}_21k_1k'
+
     convnext_model_tf = get_convnext_model(
         model_name=model_name,
         input_shape=(args["resolution"], args["resolution"], 3),
