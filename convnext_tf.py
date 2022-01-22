@@ -26,6 +26,20 @@ class StochasticDepth(layers.Layer):
         return x
 
 
+class Padding(layers.Layer):
+    def __init__(self, kernel_size: int, **kwargs):
+        super().__init__(**kwargs)
+        padding = (
+            max(kernel_size) // 2
+            if isinstance(kernel_size, (list, tuple))
+            else kernel_size // 2
+        )
+        self.padding_layer = layers.ZeroPadding2D(padding=padding)
+
+    def call(self, inputs, training=None):
+        return self.padding_layer(inputs)
+
+
 class Block(tf.keras.Model):
     """ConvNeXt block.
 
@@ -41,10 +55,11 @@ class Block(tf.keras.Model):
             self.gamma = tf.Variable(layer_scale_init_value * tf.ones((dim,)))
         else:
             self.gamma = None
+        self.dw_conv_1_padding = Padding(kernel_size=7)
         self.dw_conv_1 = layers.Conv2D(
             filters=dim,
             kernel_size=7,
-            padding="same",
+            padding="valid",
             groups=dim,
             kernel_initializer=initializers.TruncatedNormal(stddev=0.02),
             bias_initializer=initializers.Zeros(),
@@ -70,7 +85,7 @@ class Block(tf.keras.Model):
     def call(self, inputs):
         x = inputs
 
-        x = self.dw_conv_1(x)
+        x = self.dw_conv_1(self.dw_conv_1_padding(x))
         x = self.layer_norm(x)
         x = self.pw_conv_1(x)
         x = self.act_fn(x)
