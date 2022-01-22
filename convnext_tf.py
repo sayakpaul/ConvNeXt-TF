@@ -1,7 +1,7 @@
 import tensorflow as tf
 
 from tensorflow import keras
-from tensorflow.keras import layers
+from tensorflow.keras import layers, initializers
 
 
 class StochasticDepth(layers.Layer):
@@ -42,7 +42,12 @@ class Block(tf.keras.Model):
         else:
             self.gamma = None
         self.dw_conv_1 = layers.Conv2D(
-            filters=dim, kernel_size=7, padding="same", groups=dim
+            filters=dim,
+            kernel_size=7,
+            padding="same",
+            groups=dim,
+            kernel_initializer=initializers.TruncatedNormal(stddev=0.02),
+            bias_initializer=initializers.Zeros(),
         )
         self.layer_norm = layers.LayerNormalization(epsilon=1e-6)
         self.pw_conv_1 = layers.Dense(4 * dim)
@@ -92,7 +97,13 @@ def get_convnext_model(
     inputs = layers.Input(input_shape)
     stem = keras.Sequential(
         [
-            layers.Conv2D(dims[0], kernel_size=4, strides=4),
+            layers.Conv2D(
+                dims[0],
+                kernel_size=4,
+                strides=4,
+                kernel_initializer=initializers.TruncatedNormal(stddev=0.02),
+                bias_initializer=initializers.Zeros(),
+            ),
             layers.LayerNormalization(epsilon=1e-6),
         ],
         name="stem",
@@ -104,7 +115,13 @@ def get_convnext_model(
         downsample_layer = keras.Sequential(
             [
                 layers.LayerNormalization(epsilon=1e-6),
-                layers.Conv2D(dims[i + 1], kernel_size=2, strides=2),
+                layers.Conv2D(
+                    dims[i + 1],
+                    kernel_size=2,
+                    strides=2,
+                    kernel_initializer=initializers.TruncatedNormal(stddev=0.02),
+                    bias_initializer=initializers.Zeros(),
+                ),
             ],
             name=f"downsampling_block_{i}",
         )
