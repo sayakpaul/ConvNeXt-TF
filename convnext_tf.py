@@ -50,9 +50,17 @@ class Block(tf.keras.Model):
             bias_initializer=initializers.Zeros(),
         )
         self.layer_norm = layers.LayerNormalization(epsilon=1e-6)
-        self.pw_conv_1 = layers.Dense(4 * dim)
+        self.pw_conv_1 = layers.Dense(
+            4 * dim,
+            kernel_initializer=initializers.TruncatedNormal(stddev=0.02),
+            bias_initializer=initializers.Zeros(),
+        )
         self.act_fn = layers.Activation("gelu")
-        self.pw_conv_2 = layers.Dense(dim)
+        self.pw_conv_2 = layers.Dense(
+            dim,
+            kernel_initializer=initializers.TruncatedNormal(stddev=0.02),
+            bias_initializer=initializers.Zeros(),
+        )
         self.drop_path = (
             StochasticDepth(drop_path)
             if drop_path > 0.0
@@ -156,6 +164,11 @@ def get_convnext_model(
     x = layers.GlobalAvgPool2D()(x)
     x = layers.LayerNormalization(epsilon=1e-6)(x)
 
-    outputs = layers.Dense(num_classes, name="classification_head")(x)
+    outputs = layers.Dense(
+        num_classes,
+        name="classification_head",
+        kernel_initializer=initializers.TruncatedNormal(stddev=0.02),
+        bias_initializer=initializers.Zeros(),
+    )(x)
 
     return keras.Model(inputs, outputs, name=model_name)
