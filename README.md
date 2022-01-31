@@ -3,18 +3,21 @@
 This repository provides TensorFlow / Keras implementations of different ConvNeXt
 [1] variants. It also provides the TensorFlow / Keras models that have been
 populated with the original ConvNeXt pre-trained weights available from [2]. These
-models are not blackbox SavedModels i.e., they can be fully expanded into `tf.keras.Model` objects and one can cal all the utility functions on them
-(example: `.summary()`).
+models are not blackbox SavedModels i.e., they can be fully expanded into `tf.keras.Model`
+objects and one can cal all the utility functions on them (example: `.summary()`).
 
 As of today, all the TensorFlow / Keras variants of the models listed
 [here](https://github.com/facebookresearch/ConvNeXt#results-and-pre-trained-models)
-are available in this repository except for the [isotropic ones](https://github.com/facebookresearch/ConvNeXt#imagenet-1k-trained-models-isotropic). 
+are available in this repository except for the
+[isotropic ones](https://github.com/facebookresearch/ConvNeXt#imagenet-1k-trained-models-isotropic). 
 
-Refer to the ["Using the models"]() section to get started.
+Refer to the ["Using the models"](https://github.com/sayakpaul/ConvNeXt-TF#using-the-models)
+section to get started.
 
 ## Conversion
 
-TensorFlow / Keras implementations are available in `models/convnext_tf.py`. Conversion utilities are in `convert.py`.
+TensorFlow / Keras implementations are available in `models/convnext_tf.py`.
+Conversion utilities are in `convert.py`.
 
 ## Models
 
@@ -71,7 +74,8 @@ are present at [this URL](https://tensorboard.dev/experiment/odN7OPCqQvGYCRpJP1G
 
 ## Using the models
 
-* Off-the-shelf classification: [Colab Notebook]()
+* Off-the-shelf classification: [Colab Notebook](https://colab.research.google.com/github/sayakpaul/ConvNeXt-TF/blob/main/notebooks/classification.ipynb)
+
 * Fine-tuning: 
     
     ```py
@@ -107,7 +111,8 @@ are present at [this URL](https://tensorboard.dev/experiment/odN7OPCqQvGYCRpJP1G
 
 - [ ] Align layer initializers (useful if someone wanted to train the models
 from scratch)
-- [ ] Fine-tuning and off-the-shelf-classification notebooks 
+- [ ] Fine-tuning notebook 
+- [x] Off-the-shelf-classification notebook
 - [ ] Publish models on TF-Hub
 
 ## References
