@@ -19,6 +19,7 @@ def prepare_archive(model_name: str) -> None:
     print(f"Archiving to {archive_name}.")
     archive_command = f"cd {model_name} && tar -czvf ../{archive_name} *"
     os.system(archive_command)
+    os.system(f"rm -rf {model_name}")
 
 
 def save_to_gcs(model_paths: List[str]) -> None:
