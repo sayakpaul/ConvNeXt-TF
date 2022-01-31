@@ -4,7 +4,7 @@ import os
 
 
 TF_MODEL_ROOT = "gs://convnext/saved_models"
-TAR_ARCHIVES = os.path.join(TF_MODEL_ROOT, "tars")
+TAR_ARCHIVES = os.path.join(TF_MODEL_ROOT, "tars/")
 
 
 def generate_fe(model: tf.keras.Model) -> tf.keras.Model:
@@ -14,17 +14,11 @@ def generate_fe(model: tf.keras.Model) -> tf.keras.Model:
 
 
 def prepare_archive(model_name: str) -> None:
-    """Prepares a tar archive and pushes to a GCS bucket."""
+    """Prepares a tar archive."""
     archive_name = f"{model_name}.tar.gz"
     print(f"Archiving to {archive_name}.")
     archive_command = f"cd {model_name} && tar -czvf ../{archive_name} *"
     os.system(archive_command)
-    os.system(f"gsutil cp {archive_name} {TAR_ARCHIVES}")
-    print(f"{archive_name} copied.")
-
-    print("Cleaning up.")
-    os.system(f"rm -rf {model_name}")
-    os.system(f"rm -rf {archive_name}")
 
 
 def save_to_gcs(model_paths: List[str]) -> None:
@@ -44,6 +38,9 @@ def save_to_gcs(model_paths: List[str]) -> None:
         fe_model_name = f"{model_name}_fe"
         fe_model.save(fe_model_name)
         prepare_archive(fe_model_name)
+
+    os.system(f"gsutil -m cp - *.tar {TAR_ARCHIVES}")
+    os.system("rm -rf *.tar.gz")
 
 
 model_paths = tf.io.gfile.listdir(TF_MODEL_ROOT)
