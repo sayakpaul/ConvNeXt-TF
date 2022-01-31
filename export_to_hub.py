@@ -40,7 +40,7 @@ def save_to_gcs(model_paths: List[str]) -> None:
         fe_model.save(fe_model_name)
         prepare_archive(fe_model_name)
 
-    os.system(f"gsutil -m cp -r *.tar {TAR_ARCHIVES}")
+    os.system(f"gsutil -m cp -r *.tar.gz {TAR_ARCHIVES}")
     os.system("rm -rf *.tar.gz")
 
 
