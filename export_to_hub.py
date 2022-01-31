@@ -36,17 +36,6 @@ def save_to_gcs(model_paths: List[str]) -> None:
 
         print(f"Copying from {abs_model_path}.")
         os.system(f"gsutil cp -r {abs_model_path} .")
-
-        # archive_name = f"{model_name}.tar.gz"
-        # print(f"Archiving to {archive_name}.")
-        # archive_command = f"cd {model_name} && tar -czvf ../{archive_name} *"
-        # os.system(archive_command)
-        # os.system(f"gsutil cp {archive_name} {TAR_ARCHIVES}")
-        # print(f"{archive_name} copied.")
-
-        # print("Cleaning up.")
-        # os.system(f"rm -rf {model_name}")
-        # os.system(f"rm -rf {archive_name}")
         prepare_archive(model_name)
 
         print("Preparing feature extractor.")
@@ -55,16 +44,6 @@ def save_to_gcs(model_paths: List[str]) -> None:
         fe_model_name = f"{model_name}_fe"
         fe_model.save(fe_model_name)
         prepare_archive(fe_model_name)
-        # fe_archive_name = f"{fe_model_name}.tar.gz"
-        # print(f"Archiving to {archive_name}.")
-        # archive_command = f"cd {fe_model_name} && tar -czvf ../{fe_archive_name} *"
-        # os.system(archive_command)
-        # os.system(f"gsutil cp {fe_archive_name} {TAR_ARCHIVES}")
-        # print(f"{fe_archive_name} copied.")
-
-        # print("Cleaning up.")
-        # os.system(f"rm -rf {fe_model_name}")
-        # os.system(f"rm -rf {fe_archive_name}")
 
 
 model_paths = tf.io.gfile.listdir(TF_MODEL_ROOT)
