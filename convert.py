@@ -1,6 +1,6 @@
-from convnext_tf import get_convnext_model
-from model_configs import get_model_config
-import convnext
+from models.convnext_tf import get_convnext_model
+from models.model_configs import get_model_config
+from models import convnext
 
 from tensorflow.keras import layers
 import tensorflow as tf
@@ -8,6 +8,7 @@ import torch
 
 import os
 import argparse
+import numpy as np
 
 torch.set_grad_enabled(False)
 
@@ -120,7 +121,9 @@ def main(args):
 
     for layer in stem_block.layers:
         if isinstance(layer, layers.Conv2D):
-            layer.kernel.assign(tf.Variable(param_list[0].numpy().transpose()))
+            layer.kernel.assign(
+                tf.Variable(param_list[0].numpy().transpose(2, 3, 1, 0))
+            )
             layer.bias.assign(tf.Variable(param_list[1].numpy()))
         elif isinstance(layer, layers.LayerNormalization):
             layer.gamma.assign(tf.Variable(param_list[2].numpy()))
@@ -146,7 +149,7 @@ def main(args):
                     tf.Variable(
                         model_states[f"{pytorch_layer_prefix}.1.weight"]
                         .numpy()
-                        .transpose()
+                        .transpose(2, 3, 1, 0)
                     )
                 )
                 l.bias.assign(
@@ -172,7 +175,7 @@ def main(args):
                         tf.Variable(
                             model_states[f"{stage_prefix}.dwconv.weight"]
                             .numpy()
-                            .transpose()
+                            .transpose(2, 3, 1, 0)
                         )
                     )
                     layer.bias.assign(

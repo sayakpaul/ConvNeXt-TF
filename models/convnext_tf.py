@@ -77,7 +77,7 @@ def get_convnext_model(
     dims=[96, 192, 384, 768],
     drop_path_rate=0.0,
     layer_scale_init_value=1e-6,
-):
+) -> keras.Model:
     """Implements ConvNeXt family of models given a configuration.
 
     References:
