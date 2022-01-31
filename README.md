@@ -9,7 +9,8 @@ objects and one can cal all the utility functions on them (example: `.summary()`
 As of today, all the TensorFlow / Keras variants of the models listed
 [here](https://github.com/facebookresearch/ConvNeXt#results-and-pre-trained-models)
 are available in this repository except for the
-[isotropic ones](https://github.com/facebookresearch/ConvNeXt#imagenet-1k-trained-models-isotropic). 
+[isotropic ones](https://github.com/facebookresearch/ConvNeXt#imagenet-1k-trained-models-isotropic).
+This list includes the ImageNet-1k as well as ImageNet-21k models.
 
 Refer to the ["Using the models"](https://github.com/sayakpaul/ConvNeXt-TF#using-the-models)
 section to get started.
@@ -70,7 +71,7 @@ Results are on ImageNet-1k validation set (top-1 accuracy).
 Differences in the results are primarily because of the differences in the library
 implementations especially how image resizing is implemented in PyTorch and
 TensorFlow. Results can be verified with the code in `i1k_eval`. Logs
-are present at [this URL](https://tensorboard.dev/experiment/odN7OPCqQvGYCRpJP1GhRQ/).
+are available at [this URL](https://tensorboard.dev/experiment/odN7OPCqQvGYCRpJP1GhRQ/).
 
 ## Using the models
 
