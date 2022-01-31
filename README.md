@@ -112,6 +112,8 @@ are available at [this URL](https://tensorboard.dev/experiment/odN7OPCqQvGYCRpJP
 
 - [ ] Align layer initializers (useful if someone wanted to train the models
 from scratch)
+- [ ] Allow the models to accept arbitrary shapes (useful for downstream tasks)
+- [ ] Convert the [isotrophic models](https://github.com/facebookresearch/ConvNeXt#imagenet-1k-trained-models-isotropic) as well 
 - [ ] Fine-tuning notebook 
 - [x] Off-the-shelf-classification notebook
 - [ ] Publish models on TF-Hub
