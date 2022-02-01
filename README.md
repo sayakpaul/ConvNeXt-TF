@@ -4,7 +4,7 @@ This repository provides TensorFlow / Keras implementations of different ConvNeX
 [1] variants. It also provides the TensorFlow / Keras models that have been
 populated with the original ConvNeXt pre-trained weights available from [2]. These
 models are not blackbox SavedModels i.e., they can be fully expanded into `tf.keras.Model`
-objects and one can cal all the utility functions on them (example: `.summary()`).
+objects and one can call all the utility functions on them (example: `.summary()`).
 
 As of today, all the TensorFlow / Keras variants of the models listed
 [here](https://github.com/facebookresearch/ConvNeXt#results-and-pre-trained-models)
@@ -76,45 +76,15 @@ are available at [this URL](https://tensorboard.dev/experiment/odN7OPCqQvGYCRpJP
 ## Using the models
 
 * Off-the-shelf classification: [Colab Notebook](https://colab.research.google.com/github/sayakpaul/ConvNeXt-TF/blob/main/notebooks/classification.ipynb)
-
-* Fine-tuning: 
-    
-    ```py
-    from tensorflow import keras 
-
-    # Load the model.
-    model_path = "gs://convnext/saved_models/convnext_large_21k_1k_224"
-    model = keras.models.load_model(model_path)
-
-    # Detach the head.
-    feature_extractor = keras.Model(model.inputs, model.layers[-2].output)
-    feature_extractor.trainable = False
-
-    # Define your new model.
-    new_model = keras.Sequential([
-        feature_extractor,
-        keras.layers.Dense(num_classes, activation="softmax")
-    ])
-
-    # Compile the model.
-    new_model.compile(...)
-
-    # Define your datasets (be sure to follow the preprocessing, refer to
-    # `i1k_eval/eval.ipynb`).
-
-    # Train and evaluate.
-    ...
-    ```
-
-
-
+* Fine-tuning: [Colab Notebook](https://colab.research.google.com/github/sayakpaul/ConvNeXt-TF/blob/main/notebooks/finetune.ipynb)
+ 
 ## Upcoming (contributions welcome)
 
 - [ ] Align layer initializers (useful if someone wanted to train the models
 from scratch)
 - [ ] Allow the models to accept arbitrary shapes (useful for downstream tasks)
 - [ ] Convert the [isotropic models](https://github.com/facebookresearch/ConvNeXt#imagenet-1k-trained-models-isotropic) as well 
-- [ ] Fine-tuning notebook 
+- [x] Fine-tuning notebook (thanks to [awsaf49](https://github.com/awsaf49))
 - [x] Off-the-shelf-classification notebook
 - [ ] Publish models on TF-Hub
 
