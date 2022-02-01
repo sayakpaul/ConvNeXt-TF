@@ -114,7 +114,7 @@ are available at [this URL](https://tensorboard.dev/experiment/odN7OPCqQvGYCRpJP
 from scratch)
 - [ ] Allow the models to accept arbitrary shapes (useful for downstream tasks)
 - [ ] Convert the [isotropic models](https://github.com/facebookresearch/ConvNeXt#imagenet-1k-trained-models-isotropic) as well 
-- [ ] Fine-tuning notebook 
+- [x] Fine-tuning notebook (thanks to [awsaf49](https://github.com/awsaf49))
 - [x] Off-the-shelf-classification notebook
 - [ ] Publish models on TF-Hub
 
