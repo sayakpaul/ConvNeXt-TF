@@ -76,38 +76,8 @@ are available at [this URL](https://tensorboard.dev/experiment/odN7OPCqQvGYCRpJP
 ## Using the models
 
 * Off-the-shelf classification: [Colab Notebook](https://colab.research.google.com/github/sayakpaul/ConvNeXt-TF/blob/main/notebooks/classification.ipynb)
-
-* Fine-tuning: 
-    
-    ```py
-    from tensorflow import keras 
-
-    # Load the model.
-    model_path = "gs://convnext/saved_models/convnext_large_21k_1k_224"
-    model = keras.models.load_model(model_path)
-
-    # Detach the head.
-    feature_extractor = keras.Model(model.inputs, model.layers[-2].output)
-    feature_extractor.trainable = False
-
-    # Define your new model.
-    new_model = keras.Sequential([
-        feature_extractor,
-        keras.layers.Dense(num_classes, activation="softmax")
-    ])
-
-    # Compile the model.
-    new_model.compile(...)
-
-    # Define your datasets (be sure to follow the preprocessing, refer to
-    # `i1k_eval/eval.ipynb`).
-
-    # Train and evaluate.
-    ...
-    ```
-
-
-
+* Fine-tuning: [Colab Notebook](https://colab.research.google.com/github/sayakpaul/ConvNeXt-TF/blob/main/notebooks/finetune.ipynb)
+ 
 ## Upcoming (contributions welcome)
 
 - [ ] Align layer initializers (useful if someone wanted to train the models
