@@ -10,9 +10,9 @@ import os
 template = Template(
     """# Module $HANDLE
 
-ConvNeXt model pre-trained on the $DATASET_DESCRIPTION.
+Fine-tunable ConvNeXt model pre-trained on the $DATASET_DESCRIPTION.
 
-<!-- asset-path: https://storage.googleapis.com/convnext/saved_models/tars/$ARCHIVE_NAME.tar  -->
+<!-- asset-path: https://storage.googleapis.com/convnext/saved_models/tars/$ARCHIVE_NAME.tar.gz  -->
 <!-- task: image-classification -->
 <!-- network-architecture: convnext -->
 <!-- format: saved_model_2 -->
@@ -25,23 +25,8 @@ ConvNeXt model pre-trained on the $DATASET_DESCRIPTION.
 This model is a ConvNeXt [1] model pre-trained on the $DATASET_DESCRIPTION. You can find the complete
 collection of ConvNeXt models on TF-Hub on [this page](https://tfhub.dev/sayakpaul/collections/convnext/1).
 
-## Using this model
-
-```py
-model = tf.keras.Sequential([
-    hub.KerasLayer("https://tfhub.dev/$HANDLE", trainable=False)
-])
-predictions = model.predict(images)
-```
-
-Inputs to the model must:
-
-1. be four dimensional Tensors of the shape `(batch_size, height, width, num_channels)`. Note
-that the model expects images with  `channels_last`  property. `num_channels` must be 3. 
-2. be resized to $INPUT_RESOLUTION resolution.
-3. be normalized with ImageNet-1k statistics.
-
-Please refer to the Colab Notebook to know better.
+You can use this model for feature extraction and fine-tuning. Please refer to
+the Colab Notebook linked on this page for more details.
 
 ## Notes
 
@@ -79,7 +64,7 @@ class Config:
         return f"{self.single_resolution}x{self.single_resolution}"
 
     def gcs_folder_name(self):
-        return f"convnext_{self.size}_{self.dataset}_{self.single_resolution}"
+        return f"convnext_{self.size}_{self.dataset}_{self.single_resolution}_fe"
 
     def handle(self):
         return f"sayakpaul/{self.gcs_folder_name()}/1"

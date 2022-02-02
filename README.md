@@ -22,20 +22,26 @@ Conversion utilities are in `convert.py`.
 
 ## Models
 
-All the SavedModels are in `gs://convnext/saved_models` bucket. They will be
-published from TF-Hub soon. One can query the bucket like so:
+The converted models are available on [TF-Hub](https://tfhub.dev/sayakpaul/collections/convnext/1). 
+
+There should be a total of 15 different models each having two variants: classifier and
+feature extractor. You can load any model and get started like so:
+
+1. First download the model from TF-Hub and untar it:
 
 ```shell
-gsutil ls -lh gs://convnext/saved_models
+$ wget https://tfhub.dev/sayakpaul/convnext_tiny_1k_224/1?tf-hub-format=compressed \
+    -O convnext_tiny_1k_224.tar.gz
+$ mkdir convnext_tiny_1k_224
+$ tar xf convnext_tiny_1k_224.tar.gz -C convnext_tiny_1k_224
 ```
 
-There should be a total of 15 different models. You can load any model and get
-started like so:
+2. Using the untarr'd model in Python:
 
-```python
-import tensorflow as tf
+```py
+import tensorflow as tf 
 
-model_path = "gs://convnext/saved_models/convnext_large_21k_1k_384"
+model_path = "convnext_tiny_1k_224"
 model = tf.keras.models.load_model(model_path)
 print(model.summary(expand_nested=True))
 ```
@@ -44,7 +50,8 @@ The model names are interpreted as follows:
 
 * `convnext_large_21k_1k_384`: This means that the model was first pre-trained
 on the ImageNet-21k dataset and was then fine-tuned on the ImageNet-1k dataset. 
-Resolution used during pre-training and fine-tuning: 384x384.
+Resolution used during pre-training and fine-tuning: 384x384. `large` denotes
+the topology of the underlying model.
 * `convnext_large_1k_224`: Means that the model was pre-trained on the ImageNet-1k
 dataset with a resolution of 224x224.
 
@@ -86,7 +93,7 @@ from scratch)
 - [ ] Convert the [isotropic models](https://github.com/facebookresearch/ConvNeXt#imagenet-1k-trained-models-isotropic) as well 
 - [x] Fine-tuning notebook (thanks to [awsaf49](https://github.com/awsaf49))
 - [x] Off-the-shelf-classification notebook
-- [ ] Publish models on TF-Hub
+- [x] Publish models on TF-Hub
 
 ## References
 
