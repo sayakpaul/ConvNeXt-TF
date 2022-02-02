@@ -104,4 +104,5 @@ from scratch)
 
 * [Vasudev Gupta](https://github.com/vasudevgupta7) 
 * [Gus](https://twitter.com/gusthema)
+* [Willi](https://ch.linkedin.com/in/willi-gierke)
 * [ML-GDE program](https://developers.google.com/programs/experts/)
