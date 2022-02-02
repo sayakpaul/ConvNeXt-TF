@@ -27,22 +27,11 @@ The converted models are available on [TF-Hub](https://tfhub.dev/sayakpaul/colle
 There should be a total of 15 different models each having two variants: classifier and
 feature extractor. You can load any model and get started like so:
 
-1. First download the model from TF-Hub and untar it:
-
-```shell
-$ wget https://tfhub.dev/sayakpaul/convnext_tiny_1k_224/1?tf-hub-format=compressed \
-    -O convnext_tiny_1k_224.tar.gz
-$ mkdir convnext_tiny_1k_224
-$ tar xf convnext_tiny_1k_224.tar.gz -C convnext_tiny_1k_224
-```
-
-2. Then use the untarr'd model in Python:
-
 ```py
-import tensorflow as tf 
+import tensorflow as tf
 
-model_path = "convnext_tiny_1k_224"
-model = tf.keras.models.load_model(model_path)
+model_gcs_path = "gs://tfhub-modules/sayakpaul/convnext_tiny_1k_224/1/uncompressed"
+model = tf.keras.models.load_model(model_gcs_path)
 print(model.summary(expand_nested=True))
 ```
 
