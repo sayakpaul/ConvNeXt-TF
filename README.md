@@ -36,7 +36,7 @@ $ mkdir convnext_tiny_1k_224
 $ tar xf convnext_tiny_1k_224.tar.gz -C convnext_tiny_1k_224
 ```
 
-2. Using the untarr'd model in Python:
+2. Then use the untarr'd model in Python:
 
 ```py
 import tensorflow as tf 
