@@ -13,7 +13,8 @@ are available in this repository except for the
 This list includes the ImageNet-1k as well as ImageNet-21k models.
 
 Refer to the ["Using the models"](https://github.com/sayakpaul/ConvNeXt-TF#using-the-models)
-section to get started.
+section to get started. Additionally, here's a [related blog post](https://sayak.dev/convnext-tfhub/)
+that jots down my experience.
 
 ## Conversion
 
