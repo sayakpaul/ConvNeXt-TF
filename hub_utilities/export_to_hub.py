@@ -1,3 +1,6 @@
+"""Generates .tar.gz archives from SavedModels and serializes them."""
+
+
 from typing import List
 import tensorflow as tf
 import os
