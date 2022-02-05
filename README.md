@@ -72,8 +72,21 @@ are available at [this URL](https://tensorboard.dev/experiment/odN7OPCqQvGYCRpJP
 
 ## Using the models
 
+**Pre-trained models**:
+
 * Off-the-shelf classification: [Colab Notebook](https://colab.research.google.com/github/sayakpaul/ConvNeXt-TF/blob/main/notebooks/classification.ipynb)
 * Fine-tuning: [Colab Notebook](https://colab.research.google.com/github/sayakpaul/ConvNeXt-TF/blob/main/notebooks/finetune.ipynb)
+ 
+ **Randomly initialized models**:
+ 
+ ```py
+ from models.convnext_tf import get_convnext_model
+ 
+ convnext_tiny = get_convnext_model()
+ print(convnext_tiny.summary(expand_nested=True))
+ ```
+ 
+ To view different model configurations, refer [here](https://github.com/sayakpaul/ConvNeXt-TF/blob/main/models/model_configs.py).
  
 ## Upcoming (contributions welcome)
 
