@@ -7,7 +7,7 @@ from tensorflow.keras import layers
 class StochasticDepth(layers.Layer):
     """Stochastic Depth module.
 
-    It is also referred tp as Drop Path in `timm`.
+    It is also referred to as Drop Path in `timm`.
     References:
         (1) github.com:rwightman/pytorch-image-models
     """
