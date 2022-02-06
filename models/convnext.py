@@ -6,8 +6,11 @@
 # LICENSE file in the root directory of this source tree.
 
 """
+Originally from: https://github.com/facebookresearch/ConvNeXt/blob/main/models/convnext.py
+
 This script has been slightly modified to support the conversion.
 Contact: spsayakpaul@gmail.com
+
 """
 
 
