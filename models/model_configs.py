@@ -1,3 +1,10 @@
+"""
+Configuratiionns for different ConvNeXt variants. 
+
+Referred from: https://github.com/facebookresearch/ConvNeXt/blob/main/models/convnext.py
+"""
+
+
 import ml_collections
 
 
