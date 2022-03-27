@@ -100,8 +100,9 @@ from scratch)
 
 ## References
 
-* ConvNeXt paper: https://arxiv.org/abs/2201.03545
-* Official ConvNeXt code: https://github.com/facebookresearch/ConvNeXt
+[1] ConvNeXt paper: https://arxiv.org/abs/2201.03545
+
+[2] Official ConvNeXt code: https://github.com/facebookresearch/ConvNeXt
 
 ## Acknowledgements
 
